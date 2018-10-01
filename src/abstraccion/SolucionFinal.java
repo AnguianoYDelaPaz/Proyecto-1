@@ -19,7 +19,7 @@ public class SolucionFinal {
         rectangulo y = new rectangulo (4,8);
         //x.radio=4;
         y.calcularArea();
-        System.out.println("El area del cuadrado es: " + y.area);
+        System.out.println("El area del rectangulo es: " + y.area);
         
         triangulo z = new triangulo (4,5);
         z.calcularArea();
