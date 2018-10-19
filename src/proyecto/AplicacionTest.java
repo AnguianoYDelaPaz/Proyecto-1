@@ -6,6 +6,7 @@
 package proyecto;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
@@ -16,13 +17,15 @@ public class AplicacionTest extends javax.swing.JFrame {
     ArrayList <Pregunta> preguntas; 
     ArrayList<Opcion> opciones;
     ArrayList<JRadioButton> radios;
+    int indicePregunta;
+    
     /**
      * Creates new form AplicacionTest
      */
     public AplicacionTest() {
         initComponents();
         preguntas = obtenerCuestionario();
-        etiquetaPreguntaTitulo.setText(preguntas.get(0).getTitulo());
+        etiquetaPreguntaTitulo.setText(preguntas.get(indicePregunta).getTitulo());
         //Inicializamos el ArrayList de radios
         radios = new ArrayList<>();
         radios.add(radioOp1);
@@ -33,7 +36,7 @@ public class AplicacionTest extends javax.swing.JFrame {
         //Vamos a llenar esos RadioButtons con las opciones de la primer pregunta
         for(int i = 0; i < radios.size(); i++)
         {
-           radios.get(i).setText(preguntas.get(0).getOpciones().get(i).getTitulo());
+           radios.get(i).setText(preguntas.get(indicePregunta).getOpciones().get(i).getTitulo());
         }
     }
 
@@ -64,6 +67,11 @@ public class AplicacionTest extends javax.swing.JFrame {
 
         buttonGroup1.add(radioOp2);
         radioOp2.setText("jRadioButton2");
+        radioOp2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOp2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(radioOp3);
         radioOp3.setText("jRadioButton3");
@@ -79,6 +87,11 @@ public class AplicacionTest extends javax.swing.JFrame {
         });
 
         siguiente.setText("Siguiente");
+        siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +138,45 @@ public class AplicacionTest extends javax.swing.JFrame {
         // TODO add your handling code here:
         siguiente.setEnabled(true);
         checarRespuesta.setEnabled(false);
+        int indiceSeleccionado = 0;
+        for (int i = 0; i<radios.size(); i++)
+        {
+            if(radios.get(i).isSelected())
+            {
+                indiceSeleccionado=i;
+                break;
+            }
+        }
+        System.out.println("Indice seleccionado es: " + indiceSeleccionado);
+        JOptionPane.showConfirmDialog(this, "Tu respuesta es: " + checar(preguntas.get(indicePregunta),indiceSeleccionado));
+        indicePregunta ++;
+        //Aqui ponemos la respuesta en un JOptionPane
+        
     }//GEN-LAST:event_checarRespuestaActionPerformed
+
+    private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
+        // TODO add your handling code here:
+        checarRespuesta.setEnabled(true);
+        siguiente.setEnabled(false);
+         etiquetaPreguntaTitulo.setText(preguntas.get(indicePregunta).getTitulo());
+        //Inicializamos el ArrayList de radios
+        radios = new ArrayList<>();
+        radios.add(radioOp1);
+        radios.add(radioOp2);
+        radios.add(radioOp3);
+        radios.add(radioOp4);
+        siguiente.setEnabled(false);
+        //Vamos a llenar esos RadioButtons con las opciones de la primer pregunta
+        for(int i = 0; i < radios.size(); i++)
+        {
+           radios.get(i).setText(preguntas.get(indicePregunta).getOpciones().get(i).getTitulo());
+        }
+        
+    }//GEN-LAST:event_siguienteActionPerformed
+
+    private void radioOp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOp2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioOp2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,5 +364,15 @@ public ArrayList<Pregunta> obtenerCuestionario(){
         preguntas.add(p81);
         preguntas.add(p91);
         return preguntas;
+}
+boolean checar(Pregunta p, int indiceSeleccionado)
+{
+    boolean correcta=false;
+    if (p.getOpciones().get(indiceSeleccionado).isCorrecta())
+    {
+        correcta = true;
+    }
+    
+    return correcta;
 }
 }
