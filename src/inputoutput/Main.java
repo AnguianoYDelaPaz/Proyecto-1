@@ -18,9 +18,10 @@ public class Main {
         try {
             Persistencia p = new Persistencia();
             
-            p.guardar("Hola mundo");
-            System.out.println("Mensaje guardado");
-        } catch (IOException ex) {
+            //p.guardar("Hola mundo");
+            //System.out.println("Mensaje guardado");
+            System.out.println(p.leer());
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
