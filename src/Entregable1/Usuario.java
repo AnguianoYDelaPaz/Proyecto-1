@@ -9,6 +9,43 @@ import java.io.*;
  *
  * @author T-101
  */
-public class Usuario implements Serializable {
-    
+public class Usuario implements Serializable{
+    private String nombre;
+    private int edad;
+    private float sueldo;
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nombre=" + nombre + ", edad=" + edad + ", sueldo=" + sueldo + '}';
+    }
+
+    public Usuario(String nombre, int edad, float sueldo) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.sueldo = sueldo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public float getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(float sueldo) {
+        this.sueldo = sueldo;
+    }
 }
