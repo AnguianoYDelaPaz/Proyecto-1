@@ -15,9 +15,10 @@ import java.util.logging.Logger;
 public class Probar {
     public static void main(String[] args){
     try{
-        Usuario u1= new Usuario("Juan", 25, 8000);
+        Usuario u1= new Usuario("Pepe", 25, 8000);
         PersistenciaUsuario p = new PersistenciaUsuario();
-        p.guardar(u1);
+        //p.guardar(u1);
+        p.borrar(u1);
         for (Usuario u :p.leerTodos()){
             System.out.println(u);
         } 

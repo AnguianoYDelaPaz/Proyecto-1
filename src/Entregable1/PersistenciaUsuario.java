@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class PersistenciaUsuario {
     ArrayList<Usuario> usuarios;
+    int id = 0;
 
     public PersistenciaUsuario() {
         usuarios = new ArrayList<>();
@@ -23,6 +24,16 @@ public class PersistenciaUsuario {
         FileOutputStream fos = new FileOutputStream(f);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         usuarios.add(u);
+        oos.writeObject(usuarios);
+    }
+        public void borrar (Usuario u)
+    throws Exception{
+        File f = new File ("usuarios");
+        if(f.exists())usuarios = leerTodos();
+        usuarios.get(id);
+        FileOutputStream fos = new FileOutputStream(f);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        usuarios.remove(id);
         oos.writeObject(usuarios);
     }
     public ArrayList <Usuario> leerTodos()throws Exception{
