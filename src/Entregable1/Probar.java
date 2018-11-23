@@ -20,7 +20,7 @@ public class Probar {
         //p.guardar(u1);
         p.borrar(u1);
         for (Usuario u :p.leerTodos()){
-            System.out.println(u);
+          System.out.println(u);
         } 
     } catch (Exception ex){
     Logger.getLogger(Probar.class.getName()).log(Level.SEVERE, null, ex);

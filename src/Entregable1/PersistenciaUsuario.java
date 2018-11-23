@@ -29,13 +29,29 @@ public class PersistenciaUsuario {
         public void borrar (Usuario u)
     throws Exception{
         File f = new File ("usuarios");
-        if(f.exists())usuarios = leerTodos();
+        //if(f.exists())usuarios = leerTodos();
+        usuarios = leerTodos();
         usuarios.get(id);
         FileOutputStream fos = new FileOutputStream(f);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         usuarios.remove(id);
         oos.writeObject(usuarios);
     }
+        public void actualizar (int id, Usuario u)
+        throws Exception{
+        File f = new File ("usuarios");
+        //if(f.exists())usuarios = leerTodos();
+        usuarios.get(id);
+        usuarios.set(id,u);
+        FileOutputStream fos = new FileOutputStream(f);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(usuarios);
+                }
+        public Usuario buscar (int id) throws Exception{
+            usuarios = leerTodos ();
+            return usuarios.get(id);
+        }
+        
     public ArrayList <Usuario> leerTodos()throws Exception{
         File f = new File ("usuarios");
         FileInputStream fis = new FileInputStream(f);
