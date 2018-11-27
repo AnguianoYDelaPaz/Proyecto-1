@@ -22,7 +22,7 @@ public class Relojito1 extends Thread {
                 System.out.println(hora.toString());
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
-                
+            
             }
         }
     }
